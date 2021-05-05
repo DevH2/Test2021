@@ -8,8 +8,8 @@ import java.util.Set;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.commands.DriveWithJoysticks;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.Commands.DriveWithJoysticks;
+import frc.robot.Subsystems.Drivetrain;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
