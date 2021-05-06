@@ -4,46 +4,23 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class DriveBackwards extends CommandBase {
-  //drives robot backwards
 
-  private final DriveTrain drivetrain;
-  private final Timer timer;
+public class Autoroutine1 extends SequentialCommandGroup {
+  //drives in circles and spins a lot
+  /** Creates a new Autoroutine1. */
+  public Autoroutine1(DriveTrain drivetrain) {
 
-  /** Creates a new DriveCwCircle. */
-  public DriveBackwards(DriveTrain drivetrain) {
-    this.drivetrain = drivetrain;
-    timer = new Timer();
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain);
-    
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    timer.reset();
-    timer.start();
-    while(timer.get() < 2){
-      drivetrain.drive(-0.5,-0.5);
-    }
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
+    addCommands(
+      new DriveCwCircle(drivetrain),
+      new DriveForward(drivetrain),
+      new DriveCcwCircle(drivetrain),
+      new Spin(drivetrain),
+      new TurnAround(drivetrain),
+      new DriveForward(drivetrain),
+      new TurnAround(drivetrain),
+      new Spin(drivetrain),
+    );
   }
 }

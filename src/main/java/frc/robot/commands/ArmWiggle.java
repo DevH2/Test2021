@@ -51,4 +51,3 @@ private final Timer timer;
     return false;
   }
 }
-

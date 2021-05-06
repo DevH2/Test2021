@@ -4,17 +4,29 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveCwCircle extends CommandBase {
+  //makes robot drive in a circle clockwise
+  private final DriveTrain drivetrain;
+
   /** Creates a new DriveCwCircle. */
-  public DriveCwCircle() {
+  public DriveCwCircle(DriveTrain drivetrain) {
+    this.drivetrain = drivetrain;
+
+    addRequirements(drivetrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    double targetDegrees = 359;
+      while(drivetrain.getAngle() < targetDegrees){
+        drivetrain.drive(0.7,0.3);
+      }
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
