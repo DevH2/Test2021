@@ -6,6 +6,7 @@ package frc.robot;
 
 import java.util.Set;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Commands.DriveWithJoysticks;
@@ -24,6 +25,8 @@ public class RobotContainer {
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
+  public static Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK_CAN_ID);
+  public static Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK_CAN_ID);
   private Drivetrain driveTrain;
   private DriveWithJoysticks driveWithJoysticks;
 

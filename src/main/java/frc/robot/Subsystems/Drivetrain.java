@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.Joystick;
+
 
 public class Drivetrain extends SubsystemBase {
     private VictorSP leftFront, rightFront, leftRear, rightRear;
@@ -15,7 +15,6 @@ public class Drivetrain extends SubsystemBase {
     private DifferentialDrive drive;
     private AnalogGyro gyro;
     private Ultrasonic distanceSensor;
-    private Joystick joystick;
     
     public Drivetrain(){
         leftFront = new VictorSP(Constants.LEFT_FRONT_MOTOR_CAN_ID);
@@ -32,16 +31,15 @@ public class Drivetrain extends SubsystemBase {
 
         gyro = new AnalogGyro(Constants.GYRO_ID);
         distanceSensor = new Ultrasonic(Constants.DISTANCE_SENSORE_PING_CHANNEL, Constants.DISTANCE_SENSORE_ECHO_CHANNEL);
-
-        joystick = new Joystick(Constants.JOYSTICK_CAN_ID);
+        Ultrasonic.setAutomaticMode(true);
 
     }
     @Override
     public void periodic() {
     }
     //Driving
-    public void driveWithJoysticks(){
-        drive.tankDrive(joystick.getX(Constants.LEFT_JOY_AXIS),joystick.getY(Constants.RIGHT_JOY_AXIS));
+    public void driveWithJoysticks(double leftSpeed, double rightSpeed){
+        drive.tankDrive(leftSpeed,rightSpeed);
     }
 
     public void stop(){
@@ -73,6 +71,10 @@ public class Drivetrain extends SubsystemBase {
     }
 
     //Distance Sensor
+    public double getRangeInches(){
+        return distanceSensor.getRangeInches();
+    }
+
     public void enableDistanceSensor(boolean enable){
         distanceSensor.setEnabled(enable);
     }

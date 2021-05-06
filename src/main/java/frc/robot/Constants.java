@@ -27,5 +27,8 @@ public final class Constants {
     public static final int GYRO_ID = 0;
     public static final int DISTANCE_SENSORE_PING_CHANNEL = 0;
     public static final int DISTANCE_SENSORE_ECHO_CHANNEL = 1;
-    public static final int JOYSTICK_CAN_ID = 1;
+    public static final int RIGHT_JOYSTICK_CAN_ID = 1;
+    public static final int LEFT_JOYSTICK_CAN_ID = 1;
+    public static final int LEFT_JOYSTICK_AXIS = 1;
+    public static final int RIGHT_JOYSTICK_AXIS = 5;
 }
