@@ -15,14 +15,12 @@ public class Arm extends SubsystemBase {
         return limitSwitch.get();
     }
 
-    public void rotate(Joystick leftJoy, Joystick rightJoy){
-        if (leftJoy.getTrigger() && !rightJoy.getTrigger()) {
-            armMotor.setSpeed(Constants.moveUp);
-        } else if (rightJoy.getTrigger() && !leftJoy.getTrigger()) {
-            armMotor.setSpeed(Constants.moveDown);
-        } else {
-            armMotor.setSpeed(Constants.stop);
-        }
+    public void moveUp() {
+        armMotor.setSpeed(Constants.MOVE_UP);
+    }
+
+    public void moveDown() {
+        armMotor.setSpeed(Constants.MOVE_DOWN);
     }
 
     public void stopRotate(){
