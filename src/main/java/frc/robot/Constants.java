@@ -15,8 +15,7 @@ package frc.robot;
 public final class Constants {
     public static final int ARM_MOTOR_CAN_ID = 4;
     public static final int ARM_MOTOR_SWITCH_ID = 0;
-
-    public static final int moveUp = 0.7;
-    public static final int moveDown = -0.2;
-    public static final int stop = 0;
+    
+    public static final int MOVE_UP = 0.7;
+    public static final int MOVE_DOWN = -0.2;
 }
