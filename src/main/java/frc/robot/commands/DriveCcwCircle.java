@@ -5,4 +5,4 @@
 package frc.robot.commands;
 
 /** Add your docs here. */
-public class DriveCounterclockwiseCircle {}
+public class DriveCcwCircle {}

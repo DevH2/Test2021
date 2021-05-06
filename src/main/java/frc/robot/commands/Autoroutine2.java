@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Autoroutine1 extends SequentialCommandGroup {
-  /** Creates a new Autoroutine1. */
-  public Autoroutine1() {
+public class Autoroutine2 extends SequentialCommandGroup {
+  /** Creates a new Autoroutine2. */
+  public Autoroutine2() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();
