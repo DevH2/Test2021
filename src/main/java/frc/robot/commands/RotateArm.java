@@ -8,6 +8,19 @@ public class RotateArm extends CommandBase {
     }
     @Override
     public void execute(){
+        boolean leftTriggered = RobotContainer.leftJoystick.getTriggerPressed()
+        boolean rightTriggered = RobotContainer.rightJoystick.getTriggerPressed()
+    
+        public void rotate(leftTriggered, rightTriggered){
+            if (leftTriggered && !rightTriggered) {
+                armMotor.moveUp();
+            } else if (rightTriggered && leftTriggered) {
+                armMotor.moveDown();
+            } else {
+                armMotor.setSpeed(0);
+            }
+        }
+        
         if (arm.getLimitSwitch()) {
             arm.stopRotate();
         } else {
