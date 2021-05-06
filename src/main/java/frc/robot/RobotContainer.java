@@ -8,6 +8,8 @@ import java.util.Set;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.robot.commands.DriveWithJoysticks;
+import frc.robot.subsystems.Drivetrain;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -22,9 +24,17 @@ public class RobotContainer {
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
+  private Drivetrain driveTrain;
+  private DriveWithJoysticks driveWithJoysticks;
+
   public RobotContainer() {
     // Configure the button bindings
+
+    driveTrain = new Drivetrain();
+    driveWithJoysticks = new DriveWithJoysticks(driveTrain);
+    driveTrain.setDefaultCommand(driveWithJoysticks);
     configureButtonBindings();
+
   }
 
   /**
@@ -34,6 +44,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
   }
 
   /**
