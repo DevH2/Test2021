@@ -4,11 +4,14 @@
 
 package frc.robot;
 
-import java.util.Set;
-
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.commands.RotateArm;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.DriveTrain;
 
 
 /**
@@ -24,11 +27,27 @@ public class RobotContainer {
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
+  public static Joystick leftJoystick = new Joystick(0), rightJoystick = new Joystick(1);
+  private final Arm arm;
+  private final DriveTrain driveTrain;
+
+  private final RotateArm rotateArm;
   
+  private SendableChooser<Command> sendableChooser;
 
   public RobotContainer() {
-    // Configure the button bindings
-    
+
+    driveTrain = new DriveTrain();
+    arm = new Arm();
+
+    rotateArm = new RotateArm(arm);
+    arm.setDefaultCommand(rotateArm);
+  
+    driveTrain.setDefaultCommand(new RunCommand(() -> driveTrain.drive(leftJoystick.getRawAxis(Constants.LEFT_JOY_AXIS), rightJoystick.getRawAxis(Constants.RIGHT_JOY_AXIS))));
+
+    sendableChooser = new SendableChooser<>();
+    //sendableChooser.addOption("Move Arm Up and Down", command);
+
     configureButtonBindings();
   }
 
@@ -40,7 +59,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     
-
   }
 
   /**
@@ -50,14 +68,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new Command() {
-
-      @Override
-      public Set<Subsystem> getRequirements() {
-        // TODO Auto-generated method stub
-        return null;
-      }
-
-    };
+    return sendableChooser.getSelected();
   }
 }

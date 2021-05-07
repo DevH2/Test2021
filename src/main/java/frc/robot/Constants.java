@@ -22,4 +22,14 @@ public final class Constants {
     public static final int RIGHT_JOY_AXIS = 5;
 
     public static final int ARM_MOTOR_CAN_ID = 4;
+
+    public static final int GYRO_ANALOG_INPUT = 0;
+    public static final int DISTANCE_SENSOR_PING = 0;
+    public static final int DISTANCE_SENSOR_ECHO = 1;
+    public static final int LIMIT_SWITCH_DIO = 0;
+
+    public static final double AUTONOMOUS_SPIN_SPEED = 0.5;
+
+    public static final double ARM_UP_SPEED = 0.5;
+    public static final double ARM_DOWN_SPEED = -0.4;
 }
