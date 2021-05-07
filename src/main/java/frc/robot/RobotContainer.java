@@ -9,7 +9,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ArmWiggle;
+import frc.robot.commands.Autoroutine1;
+import frc.robot.commands.Autoroutine2;
+import frc.robot.commands.DriveCcwCircle;
+import frc.robot.commands.GoBackAndForth;
 import frc.robot.commands.RotateArm;
+import frc.robot.commands.Spin;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 
@@ -27,11 +34,13 @@ public class RobotContainer {
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
-  public static Joystick leftJoystick = new Joystick(0), rightJoystick = new Joystick(1);
+  public static Joystick leftJoystick = new Joystick(Constants.LEFT_JOY_USB_PORT), rightJoystick = new Joystick(Constants.RIGHT_JOY_USB_PORT);
   private final Arm arm;
   private final DriveTrain driveTrain;
 
   private final RotateArm rotateArm;
+  private final Autoroutine1 autoroutine1;
+  private final Autoroutine2 autoroutine2;
   
   private SendableChooser<Command> sendableChooser;
 
@@ -41,12 +50,15 @@ public class RobotContainer {
     arm = new Arm();
 
     rotateArm = new RotateArm(arm);
+
     arm.setDefaultCommand(rotateArm);
-  
     driveTrain.setDefaultCommand(new RunCommand(() -> driveTrain.drive(leftJoystick.getRawAxis(Constants.LEFT_JOY_AXIS), rightJoystick.getRawAxis(Constants.RIGHT_JOY_AXIS))));
 
+    autoroutine1 = new Autoroutine1(driveTrain);
+    autoroutine2 = new Autoroutine2(driveTrain, arm);
     sendableChooser = new SendableChooser<>();
-    //sendableChooser.addOption("Move Arm Up and Down", command);
+    sendableChooser.addOption("Autoroutine1", autoroutine1);
+    sendableChooser.addOption("Autoroutine2", autoroutine2);
 
     configureButtonBindings();
   }
@@ -58,7 +70,17 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
+    new JoystickButton(leftJoystick, Constants.LEFT_JOY_BUTTON_WIGGLE_ARM)
+      .whenPressed(new ArmWiggle(arm));
+
+    new JoystickButton(leftJoystick, Constants.LEFT_JOY_BUTTON_SPIN)
+      .whenPressed(new Spin(driveTrain));
+
+    new JoystickButton(rightJoystick, Constants.RIGHT_JOY_BUTTON_DRIVE_CIRCLE)
+      .whenPressed(new DriveCcwCircle(driveTrain));
+
+    new JoystickButton(rightJoystick, Constants.RIGHT_JOY_BUTTON_GO_BACK_AND_FORTH)
+      .whenPressed(new GoBackAndForth(driveTrain));
   }
 
   /**

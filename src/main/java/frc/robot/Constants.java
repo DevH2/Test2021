@@ -32,4 +32,12 @@ public final class Constants {
 
     public static final double ARM_UP_SPEED = 0.5;
     public static final double ARM_DOWN_SPEED = -0.4;
+
+    public static final int LEFT_JOY_USB_PORT = 0;
+    public static final int RIGHT_JOY_USB_PORT = 1;
+
+    public static final int LEFT_JOY_BUTTON_WIGGLE_ARM = 6;
+    public static final int LEFT_JOY_BUTTON_SPIN = 7;
+    public static final int RIGHT_JOY_BUTTON_DRIVE_CIRCLE = 6;
+    public static final int RIGHT_JOY_BUTTON_GO_BACK_AND_FORTH = 7;
 }
