@@ -18,12 +18,19 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  public static XboxController xboxController = new XboxController(0);
+  public static Joystick leftJoystick = new Joystick(1);
+  public static Joystick rightJoystick = new Joystick(2);
 
+  private Arm am;
+  private RotateArm rotateArm;
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
+    arm = new Arm();
+    rotateArm = new RotateArm(arm);
     configureButtonBindings();
   }
 
@@ -34,6 +41,8 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    JoystickButton rotateArmButton = new JoystickButton(xboxController, XboxController.button.kBumperleft.value);
+    rotateArmButton.whileHeld(new RotateArm(arm))
   }
 
   /**
