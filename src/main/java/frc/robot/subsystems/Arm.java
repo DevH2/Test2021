@@ -24,6 +24,6 @@ public class Arm extends SubsystemBase {
     }
 
     public void stopRotate(){
-        armMotor.setSpeed(Constants.stop);
+        armMotor.setSpeed(0);
     }
 }
